@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+body{
+ background-color: #A9BCF5;
+ font-family: "Helvetica", serif;	
+}
+#header
+{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
+h1 {
+	color: #0040FF;
+	font-family: 'Peralta', cursive;
+	font-style: italic;
+}
+h2 {
+	color: #0040FF;
+	font-size: medium;
+	font-style: oblique;
+}
+nav ul li
+{
+	display: inline-block;
+	margin-right:20px;
+	color:#1d1d1d;
+	cursor:pointer;
+}
+#Content
+{
+	width: 600px;
+	height: 250px;
+	background-color:#1d1d1d;
+	color:#fff;
+	margin: 0 auto;
+	text-align: left;
+	border-radius:20px;
+	padding: 20px;
+}
+a{
+	color:#0040FF;
+	font-weight: bold;	
+}
+#micanvas{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+}

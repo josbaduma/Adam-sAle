@@ -23,7 +23,6 @@ $con = conect();
 $query = "SELECT Cedula FROM Persona WHERE Cedula = '".$cedula."'";
 $querySQL = mysql_query($query,$con);
 try{
-
 	if(mysql_result($querySQL, 0))
 	{
 		$result = mysql_result($querySQL, 0);

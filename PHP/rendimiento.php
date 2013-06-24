@@ -17,7 +17,7 @@
 			<nav>
 				<ul>
 					<li><a href='inicio.html'>Inicio</a></li>
-					<li><a href='prematricula.html'>Prematricula</a></li>
+					<li><a href='../PHP/prematricula.php'>Prematricula</a></li>
 					<li><a href='cursos.html'>Cursos</a></li>
 					<li><a href='rendimiento.html'>Rendimiento Académico</a></li>
 					<li><a href='../PHP/index.php'>Salir</a></li>

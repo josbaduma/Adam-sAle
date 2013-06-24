@@ -17,7 +17,7 @@
 			<nav>
 				<ul>
 					<li><a href='inicio.html'>Inicio</a></li>
-					<li><a href='prematricula.html'>Prematricula</a></li>
+					<li><a href='../PHP/prematricula.php'>Prematricula</a></li>
 					<li><a href='cursos.html'>Cursos</a></li>
 					<li><a href='rendimiento.html'>Rendimiento Académico</a></li>
 					<li><a href='../PHP/index.php'>Salir</a></li>
@@ -27,8 +27,23 @@
 		<section>
 			<div id="Content">
 				<hgroup>
-					<h1>Cursos</h1>
+					<h1>Prematricula</h1>
 				</hgroup>
+				<?php 
+				$connection = mysql_connect("localhost", "root","J0s3D4n13l");
+				mysql_select_db("mydb", $connection);
+				$result = mysql_query("SELECT c.CodigoCurso, c.NombreCurso, e.Nombre FROM Curso INNER JOIN Curso ON c.EscuelaId = e.EscuelaId", $connection);
+				if ($row = mysql_fetch_array($result)){
+					echo "<table border = '1'> \n";
+					echo "<tr><td>Nombre</td><td>E-Mail</td></tr> \n";
+					do {
+						echo "<tr><td>".$row["nombre"]."</td><td>".$row["email"]."</td></tr> \n";
+					} while ($row = mysql_fetch_array($result));
+					echo "</table> \n";
+				} else {
+					echo "¡ No se ha encontrado ningún registro !";
+				}
+				?>
 			</div>
 		</section>
 	</div>

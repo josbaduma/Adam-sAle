@@ -16,18 +16,18 @@
 			</hgroup>
 			<nav>
 				<ul>
-					<li><a href='inicio.html'>Inicio</a></li>
-					<li><a href='../PHP/prematricula.php'>Prematricula</a></li>
-					<li><a href='cursos.html'>Cursos</a></li>
-					<li><a href='rendimiento.html'>Rendimiento Académico</a></li>
-					<li><a href='../PHP/index.php'>Salir</a></li>
+					<li><a href='inicio.php'>Inicio</a></li>
+					<li><a href='prematricula.php'>Prematricula</a></li>
+					<li><a href='cursos.php'>Cursos</a></li>
+					<li><a href='rendimiento.php'>Rendimiento</a></li>
+					<li><a href='index.php'>Salir</a></li>
 				</ul>
 			</nav>
 		</header>
 		<section>
-			<div id="Content">
+			<div class="Content">
 				<hgroup>
-					<h1>Rendimiento Académico</h1>
+					<h2>Rendimiento Académico</h2>
 				</hgroup>
 				<p>Esta información contiene su rendimiento académico en los
 					distintos cursos matriculados.</p>

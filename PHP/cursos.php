@@ -16,18 +16,18 @@
 			</hgroup>
 			<nav>
 				<ul>
-					<li><a href='inicio.html'>Inicio</a></li>
-					<li><a href='../PHP/rematricula.php'>Prematricula</a></li>
-					<li><a href='cursos.html'>Cursos</a></li>
-					<li><a href='rendimiento.html'>Rendimiento Académico</a></li>
-					<li><a href='../PHP/index.php'>Salir</a></li>
+					<li><a href='inicio.php'>Inicio</a></li>
+					<li><a href='prematricula.php'>Prematricula</a></li>
+					<li><a href='cursos.php'>Cursos</a></li>
+					<li><a href='rendimiento.php'>Rendimiento</a></li>
+					<li><a href='index.php'>Salir</a></li>
 				</ul>
 			</nav>
 		</header>
 		<section>
-			<div id="Content">
+			<div class="Content">
 				<hgroup>
-					<h1>Cursos</h1>
+					<h2>Cursos</h2>
 				</hgroup>
 			</div>
 		</section>

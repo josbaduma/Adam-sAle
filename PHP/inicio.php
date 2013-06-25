@@ -16,19 +16,19 @@
 			</hgroup>
 			<nav>
 				<ul>
-					<li><a href='inicio.html'>Inicio</a></li>
-					<li><a href='../PHP/prematricula.php'>Prematricula</a></li>
-					<li><a href='cursos.html'>Cursos</a></li>
-					<li><a href='rendimiento.html'>Rendimiento Académico</a></li>
+					<li><a href='inicio.php'>Inicio</a></li>
+					<li><a href='prematricula.php'>Prematricula</a></li>
+					<li><a href='cursos.php'>Cursos</a></li>
+					<li><a href='rendimiento.php'>Rendimiento</a></li>
 					<li><a href='index.php'>Salir</a></li>
 				</ul>
 			</nav>
 		</header>
 		<section>
-			<div id="Content">
+			<div class="Content">
 				<article>
 					<hgroup>
-						<h1>Inicio</h1>
+						<h2>Inicio</h2>
 					</hgroup>
 					<p>Bienvenido a la prematricula del Instituto Tecnológico de Costa
 						Rica, realice consulta de los curso y su información de

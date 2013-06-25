@@ -17,7 +17,7 @@
 			</hgroup>
 		</header>
 		<section>
-			<div id="Content">
+			<div class="Content">
 				<h2>Bienvenidos</h2>
 				<form action="conection.php" method="POST">
 					<i>Cédula:</i>

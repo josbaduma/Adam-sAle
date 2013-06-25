@@ -1,8 +1,10 @@
 
 <?php
 
-$cedula = $_POST["cedula"];
-$password = $_POST["password"];
+session_start();
+
+$cedula = strip_tags($_POST["cedula"]);
+$password = strip_tags($_POST["password"]);
 
 function conect()
 {
@@ -20,19 +22,20 @@ function conect()
 }
 
 $con = conect();
-$query = "SELECT Cedula FROM Persona WHERE Cedula = '".$cedula."'";
-$querySQL = mysql_query($query,$con);
+echo $cedula."<br></br>";
+echo $password."<br></br>";
+$result = mysql_query('SELECT * FROM Persona WHERE Cedula="'.mysql_real_escape_string($cedula).'" AND Clave="'.mysql_real_escape_string($password).'"');
 try{
-	if(mysql_result($querySQL, 0))
+	if(mysql_fetch_object($result))
 	{
-		$result = mysql_result($querySQL, 0);
 		echo "Usuario validado";
-		header("Location: ../HTML/inicio.html");
+		$_SESSION['logged'] = 'yes';
+		$_SESSION['cedula'] = $cedula;
+		header("Location: ../PHP/inicio.php");
 	}else{
-		echo "Usario o password incorrecto.";
+		echo "Usuario o password incorrecto.";
 	}
 }catch(Exception $error){
 }
 mysql_close($conect);
-
 ?>

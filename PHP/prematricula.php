@@ -29,16 +29,17 @@
 				<hgroup>
 					<h2>Prematricula</h2>
 				</hgroup>
+				<p> Curso óptimos a llevar para el próximo semestre.</p>
 				<?php 
-				//session_start();
+				session_start();
 				$connection = mysql_connect("localhost", "root","J0s3D4n13l");
 				mysql_select_db("mydb", $connection);
-				$result = mysql_query("SELECT CodigoCurso, NombreCurso FROM Curso WHERE CodigoCurso like '%CE%' LIMIT 20", $connection);
+				$result = mysql_query("SELECT p.Cedula, c.NombreCurso, cu.CodigoCurso, cu.NombreCurso FROM Persona p INNER JOIN PreMatriculaEstudiante pe ON pe.PersonaId=p.PersonaId INNER JOIN Prematricula pr ON pr.PrematriculaId=pe.PrematriculaId INNER JOIN Curso cu ON cu.CursoId=pr.CursoId INNER JOIN  Requisitos r ON r.CursoId=cu.CursoId INNER JOIN Curso c ON c.CursoId=r.CursoRequisitoId INNER JOIN Matricula m ON m.PersonaId=p.PersonaId INNER JOIN Oferta o ON o.OfertaId=m.OfertaId INNER JOIN Estados e ON e.EstadoId=m.EstadoId WHERE e.Nombre='Aprobado' AND p.Cedula='".$_SESSION["cedula"]."' GROUP BY cu.NombreCurso", $connection);
 				if ($row = mysql_fetch_array($result)){
 					echo "<table border = '1'> \n";
 					echo "<tr><td>Código Curso</td><td>Nombre Curso</td></tr> \n";
 					do {
-						echo "<tr><td>".$row["CodigoCurso"]."</td><td>".$row["NombreCurso"]."</td></tr> \n";
+						echo "<tr><td>".$row["CodigoCurso"]."</td><td>".utf8_encode($row["NombreCurso"])."</td></tr> \n";
 					} while ($row = mysql_fetch_array($result));
 					echo "</table> \n";
 				} else {

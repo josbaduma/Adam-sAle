@@ -48,7 +48,8 @@
 				// 				} else {
 				//
 				// 				}
-				$query = "SELECT Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Horario.HorarioCurso,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
+// 				$query = "SELECT Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Horario.HorarioCurso,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
+				$query = "SELECT Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Hora.Hora,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario,Hora WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Horario.HorarioId = Hora.HorarioId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
 				$result = mysql_query($query);
 
 				if ($row = mysql_fetch_array($result)){
@@ -59,8 +60,8 @@
 				{
 					echo "<tr>
 						<td>".$array['CodigoCurso']."</td>".
-						"<td>"."<input type='checkbox' name='card[]' value='".$array['NombreCurso']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
-						"<td>".$array['HorarioCurso'].
+						"<td align='left'>"."<input type='checkbox' name='card[]' value='".$array['NombreCurso']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
+						"<td>".$array['Hora'].
 						"<td>".$array['PersonasMatriculadas']. "</td>".
 						"</tr>";
 				}

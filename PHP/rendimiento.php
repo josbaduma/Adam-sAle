@@ -36,9 +36,8 @@
 				session_start();
 				$connection = mysql_connect("localhost", "root","");
 				mysql_select_db("mydb", $connection);
-				$query = "SELECT Curso.CodigoCurso, Curso.NombreCurso, Matricula.Nota FROM Persona INNER JOIN Matricula, Oferta,Curso WHERE Persona.PersonaId = Matricula.PersonaId AND Matricula.OfertaId = Oferta.OfertaId AND Oferta.CursoId = Curso.CursoId AND Persona.Cedula'".$_SESSION['cedula']."'";
 // 				$result = mysql_query("SELECT c.CodigoCurso, c.NombreCurso, m.Nota, e.Nombre FROM Persona p INNER JOIN Matricula m ON p.PersonaId = m.PersonaId INNER JOIN Oferta o ON o.OfertaId = m.OfertaId INNER JOIN Curso c ON c.CursoId = o.OfertaId INNER JOIN Estados e ON e.EstadoId = m.EstadoId WHERE p.Cedula='".$_SESSION['cedula']."'", $connection);
-				$result = mysql_query($query);
+				$result = mysql_query("SELECT Curso.CodigoCurso, Curso.NombreCurso, Matricula.Nota FROM Persona INNER JOIN Matricula, Oferta,Curso WHERE Persona.PersonaId = Matricula.PersonaId AND Matricula.OfertaId = Oferta.OfertaId AND Oferta.CursoId = Curso.CursoId AND Persona.Cedula ='".$_SESSION['cedula']."'", $connection);
 				if ($row = mysql_fetch_array($result)){
 					echo "<table border = '1'> \n";
 					echo "<tr><td>Código Curso</td><td>Nombre Curso</td><td>Nota</td><td>Estado</td></tr> \n";

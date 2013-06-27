@@ -8,7 +8,7 @@ $password = strip_tags($_POST["password"]);
 
 function conect()
 {
-	if(!$conection = mysql_connect("localhost", "root", "J0s3D4n13l"))
+	if(!$conection = mysql_connect("localhost", "root", ""))
 	{
 		echo "Error de conexión";
 		exit();

@@ -35,7 +35,7 @@
 				</p>
 				<?php 
 				session_start();
-				$connection = mysql_connect("localhost", "root","J0s3D4n13l");
+				$connection = mysql_connect("localhost", "root","");
 				mysql_select_db("mydb", $connection);
 				$result = mysql_query("SELECT c.CodigoCurso, c.NombreCurso FROM Persona p INNER JOIN PreMatriculaEstudiante pr ON pr.PersonaId = p.PersonaId INNER JOIN Prematricula pe ON pe.PrematriculaId=pr.PrematriculaId INNER JOIN Curso c ON c.CursoId=pe.CursoId WHERE p.Cedula='".$_SESSION["cedula"]."' AND pe.Cantidad >= 3", $connection);
 				if ($row = mysql_fetch_array($result)){

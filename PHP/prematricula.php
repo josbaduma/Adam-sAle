@@ -37,26 +37,29 @@
 				session_start();
 				$connection = mysql_connect("localhost", "root","");
 				mysql_select_db("mydb", $connection);
-				$query = "SELECT Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Hora.Hora,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario,Hora WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Horario.HorarioId = Hora.HorarioId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
+				$query = "SELECT Hora.Horarioid,Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Hora.Hora,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario,Hora WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Horario.HorarioId = Hora.HorarioId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
 				$result = mysql_query($query);
 
 				if ($row = mysql_fetch_array($result)){
 				echo "<form action='upload.php' method='POST'>";
 				echo "<table border = '1'> \n";
 				echo "<tr><td><b>Código Curso</b></td><td><b>Nombre Curso</b></td><td><b>Horario</b></td><td><b>Personas matriculadas</b></td></tr>";
-				$i = 1;
+				$i = 0;
 				while($array= mysql_fetch_array($result))
-
 				{
-					echo "<tr>
+					echo "<input type='hidden' name='muu[] value='".$array['NombreCurso']."/>";
+					echo  
+					"<tr>
 						<td>".$array['CodigoCurso']."</td>".
-						"<td align='left'>"."<input type='checkbox' name='card[]' value='".$i."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
+						"<td align='left'>".
+						"<input type='checkbox' name='card[]' value='".$array['Horarioid']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
 						"<td>".$array['Hora'].
 						"<td>".$array['PersonasMatriculadas']. "</td>".
 						"</tr>";
-					echo $i;
+					
+					$i++;
 				}
-
+				
 				echo "</table> \n";				
 				echo "<p>";
 				echo "<input type='submit' value='Ingresar datos' name='btnUploadData'/>";

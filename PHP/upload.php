@@ -1,10 +1,30 @@
-<?php 
-var_dump($_POST);
-var_dump($_GET);
-$list = $_POST["card"];
-$ju = $_POST["muu"];
+<?php
 
-echo "\n\n";
+$horario = $_POST["horario"];
+$curso = $_POST["curso"];
+
+var_dump($_POST);
+
+function validate($pList){
+	$i = 0;
+
+	$size = sizeof($pList);
+	$flag = true;
+
+	while($i < $size && $flag){
+
+		$j = $i + 1;
+		while($j < $size && $flag){
+			if ($pList[$i] == $pList[$j]){
+				$flag = false;
+			}
+			$j++;
+		}
+		$i++;
+	}
+
+	return $flag;
+}
 
 if(isset($ju)){
 	echo "Victory\n";
@@ -13,31 +33,16 @@ else{
 	echo "Sigue intentándolo\n";
 }
 
-if (isset($list))
+if (isset($horario))
 {
-	$i = 0;
-	$size = sizeof($list);
-	$flag = true;
-	while($i < $size && $flag){
-		$j = $i + 1;
-		while($j < $size && $flag){
-			if ($list[$i] == $list[$j]){
-				$flag = false;
-			}
-			$j++;
-		}
-		$i++;
+	if(!validate($horario)){ // valida no horarios repetidos
+		echo "Hay horarios repetidos";
 	}
-	
-	if(!$flag){
-		echo "Hay horarios iguales!";
-		
-	}
-	else{
-		echo "No problem here!";
+	if(!validate($curso)){ // valida cursos del mismo tipo marcados
+		echo "Hay cursos del mismo tipo seleccionados";
 	}
 }
 else{
-// 	echo 
+	// 	echo
 }
 ?>

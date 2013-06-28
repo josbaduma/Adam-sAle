@@ -37,7 +37,7 @@
 				session_start();
 				$connection = mysql_connect("localhost", "root","");
 				mysql_select_db("mydb", $connection);
-				$query = "SELECT Hora.Horarioid,Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Hora.Hora,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario,Hora WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Horario.HorarioId = Hora.HorarioId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
+				$query = "SELECT Curso.CursoId, Hora.Horarioid,Persona.Cedula,Curso.CodigoCurso,Curso.NombreCurso,Curso.Creditos,Hora.Hora,Horario.PersonasMatriculadas FROM Persona INNER JOIN PreMatriculaEstudiante,Prematricula,Curso,Horario,Hora WHERE Persona.PersonaId = PreMatriculaEstudiante.PersonaId AND PreMatriculaEstudiante.PrematriculaID = Prematricula.PrematriculaId AND Prematricula.CursoId = Curso.CursoId AND Curso.CursoId = Horario.CursoId AND Horario.HorarioId = Hora.HorarioId AND Persona.Cedula = '".$_SESSION["cedula"]."'";
 				$result = mysql_query($query);
 
 				if ($row = mysql_fetch_array($result)){
@@ -47,12 +47,12 @@
 				$i = 0;
 				while($array= mysql_fetch_array($result))
 				{
-					echo "<input type='hidden' name='muu[] value='".$array['NombreCurso']."/>";
+					echo "<input type='hidden' name='curso[] value='".$array['CursoId']."/>";
 					echo  
 					"<tr>
 						<td>".$array['CodigoCurso']."</td>".
 						"<td align='left'>".
-						"<input type='checkbox' name='card[]' value='".$array['Horarioid']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
+						"<input type='checkbox' name='horario[]' value='".$array['Horarioid']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
 						"<td>".$array['Hora'].
 						"<td>".$array['PersonasMatriculadas']. "</td>".
 						"</tr>";

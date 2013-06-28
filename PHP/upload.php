@@ -1,11 +1,16 @@
 <?php
+// $con=mysql_connect("localhost", "root", "", "mydb");
 
-$horario = $_POST["horario"];
-$curso = $_POST["curso"];
+session_start();
+$con = mysql_connect("localhost", "root","");
 
-var_dump($_POST);
+
+$info = $_POST["info"];
 
 function validate($pList){
+	var_dump($_GET);
+	echo"<br/>";
+	print_r($pList);
 	$i = 0;
 
 	$size = sizeof($pList);
@@ -26,20 +31,64 @@ function validate($pList){
 	return $flag;
 }
 
-if(isset($ju)){
-	echo "Victory\n";
-}
-else{
-	echo "Sigue intentándolo\n";
+function updateDB($horario, $curso, $con){
+
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	else{
+		mysql_select_db("mydb", $con);
+		$i = 0;
+		$size = sizeof($horario);
+		echo "Size $size<br/><br/>";
+
+		while($i < $size){
+			echo "Horario $horario[$i] Curso $curso[$i]<br/>";
+			if (is_numeric($horario[$i])) {
+				echo "'$horario[$i]' is numeric", PHP_EOL;
+			} else {
+				echo "'$horario[$i]' is NOT numeric", PHP_EOL;
+			}
+				
+			$query = "UPDATE Horario SET Horario.PersonasMatriculadas = Horario.PersonasMatriculadas + 1 WHERE Horario.HorarioId = '".$horario[$i]."' AND Horario.CursoId = ".$curso[$i]."";
+			if(mysql_query($query, $con)){
+				echo "exito<br/>";
+			}
+			else{
+				echo "fail<br/>";
+			}
+			$i++;
+		}
+	}
+
+	mysqli_close($con);
 }
 
-if (isset($horario))
+if (isset($info))
 {
+	$horario = array();
+	$curso = array();
+	$i = 0;
+	foreach ($info as $value){
+		$tmp = explode(".", $info[$i]);
+		$horario[] = $tmp[0];
+		$curso[] = $tmp[1];
+
+		$i++;
+	}
+
+	$flag = true;
 	if(!validate($horario)){ // valida no horarios repetidos
+		$flag = false;
 		echo "Hay horarios repetidos";
 	}
-	if(!validate($curso)){ // valida cursos del mismo tipo marcados
+	if(!validate($curso) && $flag){ // valida cursos del mismo tipo marcados
+		$flag = false;
 		echo "Hay cursos del mismo tipo seleccionados";
+	}
+
+	if($flag){ // todos los datos validados correctamente
+		updateDB($horario, $curso, $con);
 	}
 }
 else{

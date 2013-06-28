@@ -47,12 +47,11 @@
 				$i = 0;
 				while($array= mysql_fetch_array($result))
 				{
-					echo "<input type='hidden' name='curso[] value='".$array['CursoId']."/>";
 					echo  
 					"<tr>
 						<td>".$array['CodigoCurso']."</td>".
 						"<td align='left'>".
-						"<input type='checkbox' name='horario[]' value='".$array['Horarioid']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
+						"<input type='checkbox' name='info[]' value='".$array['Horarioid'].'.'.$array['CursoId']."' nonchecked>".utf8_encode($array['NombreCurso'])."</td>".
 						"<td>".$array['Hora'].
 						"<td>".$array['PersonasMatriculadas']. "</td>".
 						"</tr>";
